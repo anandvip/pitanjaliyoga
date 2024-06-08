@@ -34,10 +34,21 @@
         font-size: 0.9em;
         color: #666;
     }
+  .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 </style>
 </head>
 <body>
-<div class="container">
+<div id="hero" class="container">
     <h1>Expanded Explanations of Patanjali Yoga Sutras for Vipul Anand</h1>
 
     <h2>1. योगः चित्तवृत्ति निरोधः (Yogaḥ cittavṛtti nirodhaḥ)</h2>
@@ -84,8 +95,18 @@
     <p><strong>"These modifications are restrained by practice and non-attachment."</strong></p>
     <p><strong>Explanation:</strong> The fluctuations of the mind can be controlled through persistent practice (abhyasa) and detachment (vairagya), leading to stability and clarity in the pursuit of self-realization.</p>
 </div>
+  <button class="back-to-top" onclick="scrollToTop()"><svg viewBox="0 0 512 512" width="50" title="arrow-circle-up">
+  <path d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm143.6 28.9l72.4-75.5V392c0 13.3 10.7 24 24 24h16c13.3 0 24-10.7 24-24V209.4l72.4 75.5c9.3 9.7 24.8 9.9 34.3.4l10.9-11c9.4-9.4 9.4-24.6 0-33.9L273 107.7c-9.4-9.4-24.6-9.4-33.9 0L106.3 240.4c-9.4 9.4-9.4 24.6 0 33.9l10.9 11c9.6 9.5 25.1 9.3 34.4-.4z" />
+</svg></button>
 <footer>
     <p>Lyrics source 🙏🏼: <a href="https://music.youtube.com/watch?v=Xrd85o769Rk&list=RDAMVMXrd85o769Rk" target="_blank">https://music.youtube.com/watch?v=Xrd85o769Rk&list=RDAMVMXrd85o769Rk</a></p>
 </footer>
+  <script>
+    function scrollToTop() {
+      document.getElementById('hero').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  </script>
 </body>
 </html>
