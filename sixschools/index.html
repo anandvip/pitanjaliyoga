@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Six Hindu Schools × AI — Complete Learning Guide</title>
+  <meta name="description" content="Explore how six classical Hindu philosophical schools offer frameworks for navigating AI-age challenges, with practical applications and interactive learning tools."/>
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --fg: #e6edf3;
+      --muted: #9fb0c0;
+      --card: #11161c;
+      --accent: #6aa6ff;
+      --accent-2: #7ee787;
+      --danger: #ff7b72;
+      --border: #1f2937;
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+      --pass: #16a34a;
+      --fail: #ef4444;
+    }
+    
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --fg: #0b1220;
+      --muted: #4b5563;
+      --card: #ffffff;
+      --accent: #1d4ed8;
+      --accent-2: #0d9488;
+      --danger: #b91c1c;
+      --border: #e5e7eb;
+      --shadow: 0 8px 24px rgba(15,23,42,.08);
+      --pass: #15803d;
+      --fail: #b91c1c;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(to bottom, var(--bg) 80%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 16px 0;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .title-group h1 {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 800;
+      margin: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+    
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    button, .btn {
+      background: var(--card);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    button:hover { border-color: var(--accent); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+    .btn-primary:hover { opacity: 0.9; }
+    
+    /* Introduction */
+    .intro-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: var(--shadow);
+    }
+    
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+    
+    .intro-section h3 {
+      color: var(--accent);
+      margin: 0 0 12px 0;
+      font-size: 1.1rem;
+    }
+    
+    /* School Cards */
+    .schools-grid {
+      display: grid;
+      gap: 24px;
+      margin: 24px 0;
+    }
+    
+    .school-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .school-card.nyaya { border-left: 4px solid #60a5fa; }
+    .school-card.vaiseshika { border-left: 4px solid #34d399; }
+    .school-card.sankhya { border-left: 4px solid #f59e0b; }
+    .school-card.yoga { border-left: 4px solid #a78bfa; }
+    .school-card.mimamsa { border-left: 4px solid #f43f5e; }
+    .school-card.vedanta { border-left: 4px solid #22d3ee; }
+    
+    .school-header {
+      background: linear-gradient(135deg, var(--card), color-mix(in srgb, var(--card), var(--bg) 30%));
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .school-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+    }
+    
+    .school-subtitle {
+      color: var(--muted);
+      margin: 0 0 16px 0;
+      line-height: 1.5;
+    }
+    
+    .school-toggle {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .school-toggle:hover {
+      background: color-mix(in srgb, var(--accent), transparent 90%);
+      border-color: var(--accent);
+    }
+    
+    .school-content {
+      display: none;
+      padding: 20px;
+    }
+    
+    .school-content.expanded {
+      display: block;
+    }
+    
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    
+    .content-section h3 {
+      color: var(--accent);
+      margin: 0 0 12px 0;
+      font-size: 1.1rem;
+    }
+    
+    .concept-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .concept-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--border), transparent 50%);
+    }
+    
+    .concept-list li:last-child { border-bottom: none; }
+    
+    .sanskrit-term {
+      font-style: italic;
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+    
+    /* Interactive Elements */
+    .quiz-container {
+      background: linear-gradient(45deg, color-mix(in srgb, var(--accent), transparent 90%), color-mix(in srgb, var(--accent-2), transparent 90%));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+    
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+    }
+    
+    .quiz-option {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--card);
+    }
+    
+    .quiz-option:hover {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent), transparent 90%);
+    }
+    
+    .quiz-option.correct {
+      background: var(--pass);
+      color: white;
+      border-color: var(--pass);
+    }
+    
+    .quiz-option.incorrect {
+      background: var(--fail);
+      color: white;
+      border-color: var(--fail);
+    }
+    
+    /* Application Workflows */
+    .workflow-panel {
+      background: linear-gradient(135deg, var(--card), color-mix(in srgb, var(--card), var(--accent) 5%));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    
+    .workflow-steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    
+    .workflow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+    }
+    
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .step-content {
+      flex: 1;
+    }
+    
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    /* Notes System */
+    .notes-panel {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+    
+    .notes-textarea {
+      width: 100%;
+      min-height: 120px;
+      background: var(--card);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+    
+    /* Search */
+    .search-container {
+      position: relative;
+      flex: 1;
+      max-width: 300px;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: 0.9rem;
+    }
+    
+    /* Utilities */
+    .text-center { text-align: center; }
+    .text-muted { color: var(--muted); }
+    .mb-16 { margin-bottom: 16px; }
+    .mt-16 { margin-top: 16px; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .controls {
+        justify-content: center;
+      }
+      
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="title-group">
+          <h1>Six Hindu Schools × AI</h1>
+          <div class="subtitle">Complete Learning Guide • Interactive • Open Exploration</div>
+        </div>
+        <div class="controls">
+          <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search concepts..." id="searchInput">
+          </div>
+          <button id="expandAll">Expand All</button>
+          <button id="collapseAll">Collapse All</button>
+          <button id="themeToggle">Toggle Theme</button>
+          <button id="exportNotes" class="btn-primary">Export Notes</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Introduction -->
+    <section class="intro-panel">
+      <h2 style="margin: 0 0 16px 0; font-size: 1.8rem;">What This Document Offers</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px;">
+        This is a <strong>practical reference guide</strong> that maps six classical Hindu philosophical schools 
+        to modern AI challenges. Each school offers unique frameworks for reasoning about knowledge, reality, 
+        consciousness, ethics, and meaning in our AI-driven world.
+      </p>
+      
+      <div class="intro-grid">
+        <div class="intro-section">
+          <h3>How to Use This Guide</h3>
+          <ul style="padding-left: 20px;">
+            <li><strong>Explore freely</strong> — All schools are immediately accessible</li>
+            <li><strong>Follow curiosity</strong> — Start with whichever concepts resonate</li>
+            <li><strong>Take notes</strong> — Your insights are saved locally in each section</li>
+            <li><strong>Apply practically</strong> — Each school includes concrete AI applications</li>
+          </ul>
+        </div>
+        
+        <div class="intro-section">
+          <h3>What You'll Learn</h3>
+          <ul style="padding-left: 20px;">
+            <li><strong>Frameworks for reasoning</strong> about AI systems and their impacts</li>
+            <li><strong>Practical tools</strong> for design, ethics, and governance decisions</li>
+            <li><strong>Cross-cultural perspectives</strong> on technology and human flourishing</li>
+            <li><strong>Ancient wisdom</strong> applied to contemporary challenges</li>
+          </ul>
+        </div>
+        
+        <div class="intro-section">
+          <h3>Interactive Features</h3>
+          <ul style="padding-left: 20px;">
+            <li><strong>Knowledge checks</strong> — Test your understanding with built-in quizzes</li>
+            <li><strong>Practical workflows</strong> — Step-by-step application guides</li>
+            <li><strong>Search & navigation</strong> — Find concepts across all schools</li>
+            <li><strong>Note export</strong> — Download your reflections as markdown</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools Grid -->
+    <div class="schools-grid">
+      
+      <!-- Nyaya -->
+      <section class="school-card nyaya">
+        <div class="school-header">
+          <h2 class="school-title">1. Nyāya — Logic & Epistemology</h2>
+          <p class="school-subtitle">
+            The science of valid reasoning. Key text: <span class="sanskrit-term">Nyāya Sūtra</span> by Gautama. 
+            Master the four sources of knowledge and logical fallacies.
+          </p>
+          <button class="school-toggle" data-school="nyaya">
+            Explore Nyāya <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+        
+        <div class="school-content" data-content="nyaya">
+          <div class="content-grid">
+            <div class="content-section">
+              <h3>Four Sources of Valid Knowledge (Pramāṇas)</h3>
+              <ul class="concept-list">
+                <li><span class="sanskrit-term">Pratyakṣa</span> (Direct Perception) — Evidence from direct observation and measurement</li>
+                <li><span class="sanskrit-term">Anumāna</span> (Inference) — Logical deduction from premises to conclusions</li>
+                <li><span class="sanskrit-term">Upamāna</span> (Comparison) — Knowledge through analogy and similarity</li>
+                <li><span class="sanskrit-term">Śabda</span> (Authoritative Testimony) — Knowledge from reliable sources and expert testimony</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>AI Applications</h3>
+              <ul class="concept-list">
+                <li><strong>Model Validation:</strong> Treat AI outputs as arguments requiring pramāṇa-level verification</li>
+                <li><strong>Explainability:</strong> Trace conclusions through evidence chains to source data</li>
+                <li><strong>Bias Detection:</strong> Systematically catalog logical fallacies in training data</li>
+                <li><strong>Governance:</strong> Establish verification protocols for high-stakes AI deployments</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="workflow-panel">
+            <h3>The Nyāya Review Protocol</h3>
+            <div class="workflow-steps">
+              <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <div class="step-title">State the Claim</div>
+                  Express the AI system's output in clear, logical form
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <div class="step-title">Document Evidence Trail</div>
+                  Identify which pramāṇa supports each claim component
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <div class="step-title">Counter-Evidence Search</div>
+                  Actively seek contradictory data or alternative explanations
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <div class="step-title">Fallacy Audit</div>
+                  Check for common logical errors and cognitive biases
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quiz-container">
+            <div class="quiz-question">Which pramāṇa is violated when an AI model makes claims without citing sources or providing evidence trails?</div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-correct="false">Pratyakṣa (Direct Perception)</div>
+              <div class="quiz-option" data-correct="false">Anumāna (Inference)</div>
+              <div class="quiz-option" data-correct="true">Śabda (Authoritative Testimony)</div>
+              <div class="quiz-option" data-correct="false">Upamāna (Comparison)</div>
+            </div>
+          </div>
+          
+          <div class="notes-panel">
+            <h3>Your Notes on Nyāya</h3>
+            <textarea class="notes-textarea" data-school="nyaya" placeholder="Capture your insights about Nyāya logic and its applications to AI systems..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vaiseshika -->
+      <section class="school-card vaiseshika">
+        <div class="school-header">
+          <h2 class="school-title">2. Vaiśeṣika — Ontology & Categories</h2>
+          <p class="school-subtitle">
+            The atomic theory of reality. Key text: <span class="sanskrit-term">Vaiśeṣika Sūtra</span> by Kaṇāda. 
+            Learn the seven categories of existence for robust system design.
+          </p>
+          <button class="school-toggle" data-school="vaiseshika">
+            Explore Vaiśeṣika <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+        
+        <div class="school-content" data-content="vaiseshika">
+          <div class="content-grid">
+            <div class="content-section">
+              <h3>Seven Categories of Existence (Padārthas)</h3>
+              <ul class="concept-list">
+                <li><span class="sanskrit-term">Dravya</span> (Substance) — Core entities, objects, database tables</li>
+                <li><span class="sanskrit-term">Guṇa</span> (Quality) — Attributes, properties, data fields</li>
+                <li><span class="sanskrit-term">Karman</span> (Action) — Events, processes, transformations</li>
+                <li><span class="sanskrit-term">Sāmānya</span> (Generality) — Classes, types, ontological categories</li>
+                <li><span class="sanskrit-term">Viśeṣa</span> (Particularity) — Unique identifiers, primary keys</li>
+                <li><span class="sanskrit-term">Samavāya</span> (Inherence) — Composition relationships, how parts relate to wholes</li>
+                <li><span class="sanskrit-term">Abhāva</span> (Non-existence) — Explicit absence, null values, missing data semantics</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>AI Applications</h3>
+              <ul class="concept-list">
+                <li><strong>Knowledge Graphs:</strong> Use padārthas to design robust ontologies and schemas</li>
+                <li><strong>Data Contracts:</strong> Samavāya for composition rules; Abhāva for null handling</li>
+                <li><strong>Type Safety:</strong> Precise category constraints reduce AI hallucinations</li>
+                <li><strong>System Architecture:</strong> Clear entity-relationship modeling prevents category errors</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="workflow-panel">
+            <h3>Padārtha Schema Design</h3>
+            <div class="workflow-steps">
+              <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <div class="step-title">Entity Inventory</div>
+                  List all core entities (Dravya) and their essential attributes (Guṇa)
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <div class="step-title">Define Relationships</div>
+                  Map composition rules (Samavāya) and unique identifiers (Viśeṣa)
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <div class="step-title">Absence Semantics</div>
+                  Explicitly model null values and missing data (Abhāva)
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <div class="step-title">Category Testing</div>
+                  Validate type boundaries and test for category confusion
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quiz-container">
+            <div class="quiz-question">In AI systems, which padārtha would you use to model the relationship between a "User" entity and their "Profile" data?</div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-correct="false">Viśeṣa (Particularity)</div>
+              <div class="quiz-option" data-correct="true">Samavāya (Inherence)</div>
+              <div class="quiz-option" data-correct="false">Abhāva (Non-existence)</div>
+              <div class="quiz-option" data-correct="false">Sāmānya (Generality)</div>
+            </div>
+          </div>
+          
+          <div class="notes-panel">
+            <h3>Your Notes on Vaiśeṣika</h3>
+            <textarea class="notes-textarea" data-school="vaiseshika" placeholder="Your insights on categories, ontologies, and data modeling using Vaiśeṣika principles..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sankhya -->
+      <section class="school-card sankhya">
+        <div class="school-header">
+          <h2 class="school-title">3. Sāṅkhya — Consciousness & the Guṇas</h2>
+          <p class="school-subtitle">
+            The dualism of witness and nature. Key text: <span class="sanskrit-term">Sāṅkhya Kārikā</span> by Īśvarakṛṣṇa. 
+            Understand consciousness, mechanical processes, and the three fundamental qualities.
+          </p>
+          <button class="school-toggle" data-school="sankhya">
+            Explore Sāṅkhya <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+        
+        <div class="school-content" data-content="sankhya">
+          <div class="content-grid">
+            <div class="content-section">
+              <h3>The Three Guṇas (Fundamental Qualities)</h3>
+              <ul class="concept-list">
+                <li><span class="sanskrit-term">Sattva</span> (Clarity/Harmony) — Illumination, balance, understanding, peace</li>
+                <li><span class="sanskrit-term">Rajas</span> (Activity/Passion) — Motion, desire, agitation, compulsive action</li>
+                <li><span class="sanskrit-term">Tamas</span> (Inertia/Darkness) — Heaviness, confusion, stagnation, numbness</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>Puruṣa vs Prakṛti</h3>
+              <ul class="concept-list">
+                <li><span class="sanskrit-term">Puruṣa</span> — Pure consciousness/awareness; the witness that observes</li>
+                <li><span class="sanskrit-term">Prakṛti</span> — Primordial nature; mechanical/algorithmic processes</li>
+                <li><strong>Key Insight:</strong> Distinguish between awareness and the mechanisms it observes</li>
+                <li><strong>Liberation:</strong> Recognizing the difference leads to non-entanglement</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>AI Applications</h3>
+              <ul class="concept-list">
+                <li><strong>Attention Design:</strong> Optimize for sattva (clarity), manage rajas (compulsion), reduce tamas (numbness)</li>
+                <li><strong>Human-in-the-Loop:</strong> Preserve human agency (Puruṣa) while leveraging AI capabilities (Prakṛti)</li>
+                <li><strong>Interface Design:</strong> Surface mental state indicators; design for different guṇa states</li>
+                <li><strong>Digital Wellbeing:</strong> Recognize when systems entrain users into rajasic or tamasic patterns</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="workflow-panel">
+            <h3>Guṇa-Aware UX Design</h3>
+            <div class="workflow-steps">
+              <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <div class="step-title">Audit Current Patterns</div>
+                  Identify which guṇa your interface amplifies in different user flows
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <div class="step-title">Design for Sattva</div>
+                  Create clear, focused experiences that support understanding and calm decision-making
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <div class="step-title">Channel Rajas Constructively</div>
+                  When energy and activity are needed, provide clear direction and completion states
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <div class="step-title">Prevent Tamas</div>
+                  Add natural stopping points, variety, and engagement to prevent mental dullness
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quiz-container">
+            <div class="quiz-question">An app that creates endless scroll addiction would be primarily increasing which guṇa?</div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-correct="false">Sattva (clarity)</div>
+              <div class="quiz-option" data-correct="true">Rajas (compulsive activity)</div>
+              <div class="quiz-option" data-correct="false">Tamas (inertia)</div>
+              <div class="quiz-option" data-correct="false">All three equally</div>
+            </div>
+          </div>
+          
+          <div class="notes-panel">
+            <h3>Your Notes on Sāṅkhya</h3>
+            <textarea class="notes-textarea" data-school="sankhya" placeholder="Your thoughts on consciousness, the guṇas, and human-AI interaction design..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Yoga -->
+      <section class="school-card yoga">
+        <div class="school-header">
+          <h2 class="school-title">4. Yoga — The Eightfold Path</h2>
+          <p class="school-subtitle">
+            Systematic practice for mental mastery. Key text: <span class="sanskrit-term">Yoga Sūtra</span> by Patañjali. 
+            Master the eight limbs for disciplined focus and ethical action.
+          </p>
+          <button class="school-toggle" data-school="yoga">
+            Explore Yoga <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+        
+        <div class="school-content" data-content="yoga">
+          <div class="content-grid">
+            <div class="content-section">
+              <h3>The Eight Limbs (Aṣṭāṅga)</h3>
+              <ul class="concept-list">
+                <li><span class="sanskrit-term">Yama</span> (Restraints) — Ethical guidelines: non-harm, truthfulness, non-stealing, continence, non-possessiveness</li>
+                <li><span class="sanskrit-term">Niyama</span> (Observances) — Personal practices: cleanliness, contentment, disciplined practice, self-study, surrender</li>
+                <li><span class="sanskrit-term">Āsana</span> (Posture) — Physical stability and comfort as foundation</li>
+                <li><span class="sanskrit-term">Prāṇāyāma</span> (Breath Control) — Energy regulation and nervous system balance</li>
+                <li><span class="sanskrit-term">Pratyāhāra</span> (Sense Withdrawal) — Conscious control of sensory inputs</li>
+                <li><span class="sanskrit-term">Dhāraṇā</span> (Concentration) — Focused attention on a single object</li>
+                <li><span class="sanskrit-term">Dhyāna</span> (Meditation) — Sustained, effortless awareness</li>
+                <li><span class="sanskrit-term">Samādhi</span> (Integration) — Absorbed states of unified consciousness</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>AI Applications</h3>
+              <ul class="concept-list">
+                <li><strong>Digital Pratyāhāra:</strong> Conscious management of notifications and information inputs</li>
+                <li><strong>Focus Protocols:</strong> Dhāraṇā-inspired deep work sessions with single-task attention</li>
+                <li><strong>Ethical AI Development:</strong> Yama/Niyama principles embedded in development practices</li>
+                <li><strong>Recovery Rituals:</strong> Structured breaks and reflection periods in work cycles</li>
+                <li><strong>Team Practices:</strong> Collective disciplines for sustainable, ethical AI development</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="workflow-panel">
+            <h3>Digital Yoga Protocol</h3>
+            <div class="workflow-steps">
+              <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <div class="step-title">Ethical Foundation (Yama)</div>
+                  Establish ethical guidelines for AI development: truthful documentation, non-harm principles
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <div class="step-title">Personal Discipline (Niyama)</div>
+                  Create regular practices: code review rituals, learning disciplines, reflection time
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <div class="step-title">Environment Setup (Āsana)</div>
+                  Design stable, comfortable work environments that support sustained focus
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <div class="step-title">Input Management (Pratyāhāra)</div>
+                  Consciously control information inputs: notifications, meetings, distractions
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <div class="step-title">Deep Work (Dhāraṇā → Dhyāna)</div>
+                  Practice sustained attention on complex problems; build capacity for flow states
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quiz-container">
+            <div class="quiz-question">Which limb of yoga is most directly applicable to managing social media and notification overload?</div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-correct="false">Dhāraṇā (concentration)</div>
+              <div class="quiz-option" data-correct="true">Pratyāhāra (sense withdrawal)</div>
+              <div class="quiz-option" data-correct="false">Yama (restraints)</div>
+              <div class="quiz-option" data-correct="false">Āsana (posture)</div>
+            </div>
+          </div>
+          
+          <div class="notes-panel">
+            <h3>Your Notes on Yoga</h3>
+            <textarea class="notes-textarea" data-school="yoga" placeholder="Your reflections on systematic practice, focus protocols, and digital discipline..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mimamsa -->
+      <section class="school-card mimamsa">
+        <div class="school-header">
+          <h2 class="school-title">5. Pūrva Mīmāṃsā — Duty & Hermeneutics</h2>
+          <p class="school-subtitle">
+            The science of dharma and interpretation. Key text: <span class="sanskrit-term">Mīmāṃsā Sūtra</span> by Jaimini. 
+            Learn systematic rules for interpretation and ethical action.
+          </p>
+          <button class="school-toggle" data-school="mimamsa">
+            Explore Mīmāṃsā <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+        
+        <div class="school-content" data-content="mimamsa">
+          <div class="content-grid">
+            <div class="content-section">
+              <h3>Hermeneutical Principles</h3>
+              <ul class="concept-list">
+                <li><span class="sanskrit-term">Upakrama-upasaṃhāra</span> — Beginning and end must align; purpose and outcomes should match</li>
+                <li><span class="sanskrit-term">Abhyāsa</span> — Repeated emphasis indicates priority and importance</li>
+                <li><span class="sanskrit-term">Apūrvatā</span> — Novel elements require special attention and careful handling</li>
+                <li><span class="sanskrit-term">Phala</span> — Judge systems and policies by their observable results</li>
+                <li><span class="sanskrit-term">Arthavāda</span> — Distinguish promotional language from actual requirements</li>
+                <li><span class="sanskrit-term">Upapatti</span> — Logical reasoning must support all policy decisions</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>The Concept of Apūrva</h3>
+              <p style="margin-bottom: 16px;">
+                Actions produce delayed, non-obvious consequences that may not manifest immediately. 
+                In AI systems, this translates to emergent behaviors, feedback loops, and long-term 
+                societal impacts that require careful anticipation and monitoring.
+              </p>
+              <ul class="concept-list">
+                <li><strong>Second-order effects:</strong> How AI changes human behavior over time</li>
+                <li><strong>Systemic impacts:</strong> Broader societal and cultural consequences</li>
+                <li><strong>Emergent properties:</strong> Unexpected behaviors arising from complex interactions</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>AI Applications</h3>
+              <ul class="concept-list">
+                <li><strong>Policy Design:</strong> Create unambiguous operational rules with clear precedence hierarchies</li>
+                <li><strong>Apūrva Detection:</strong> Systematically anticipate second and third-order effects</li>
+                <li><strong>Conflict Resolution:</strong> Develop methods for resolving competing ethical principles</li>
+                <li><strong>Governance Rituals:</strong> Structured decision-making processes for high-stakes choices</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="workflow-panel">
+            <h3>Mīmāṃsā Policy Framework</h3>
+            <div class="workflow-steps">
+              <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <div class="step-title">Clear Injunctions</div>
+                  Write policies in unambiguous language with specific conditions and actions
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <div class="step-title">Precedence Rules</div>
+                  Establish clear hierarchies for resolving conflicts between competing principles
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <div class="step-title">Apūrva Analysis</div>
+                  Map potential long-term and indirect consequences of policy decisions
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <div class="step-title">Implementation Rituals</div>
+                  Create structured processes for deployment, monitoring, and adjustment
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <div class="step-title">Results Evaluation</div>
+                  Regularly assess outcomes against stated purposes (Upakrama-upasaṃhāra)
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quiz-container">
+            <div class="quiz-question">When designing AI safety policies, which Mīmāṃsā principle is most relevant for handling unprecedented scenarios?</div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-correct="false">Abhyāsa (repetition)</div>
+              <div class="quiz-option" data-correct="true">Apūrvatā (novelty)</div>
+              <div class="quiz-option" data-correct="false">Arthavāda (praise)</div>
+              <div class="quiz-option" data-correct="false">Upakrama (beginning)</div>
+            </div>
+          </div>
+          
+          <div class="notes-panel">
+            <h3>Your Notes on Mīmāṃsā</h3>
+            <textarea class="notes-textarea" data-school="mimamsa" placeholder="Your thoughts on ethics, policy design, handling rule conflicts, and anticipating consequences..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vedanta -->
+      <section class="school-card vedanta">
+        <div class="school-header">
+          <h2 class="school-title">6. Vedānta — The Ultimate Teaching</h2>
+          <p class="school-subtitle">
+            The culmination of Vedic wisdom. Key texts: <span class="sanskrit-term">Brahma Sūtra</span>, Upaniṣads, Bhagavad Gītā. 
+            Understand the relationship between self, world, and ultimate reality.
+          </p>
+          <button class="school-toggle" data-school="vedanta">
+            Explore Vedānta <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+        
+        <div class="school-content" data-content="vedanta">
+          <div class="content-grid">
+            <div class="content-section">
+              <h3>Core Concepts</h3>
+              <ul class="concept-list">
+                <li><span class="sanskrit-term">Brahman</span> — Ultimate reality; pure being-consciousness-bliss</li>
+                <li><span class="sanskrit-term">Ātman</span> — Individual self/consciousness; the witness of all experience</li>
+                <li><span class="sanskrit-term">Māyā</span> — Cosmic illusion; appearances that seem real but are ultimately temporal</li>
+                <li><span class="sanskrit-term">Mokṣa</span> — Liberation through direct knowledge of one's true nature</li>
+                <li><span class="sanskrit-term">Neti Neti</span> — "Not this, not this" — method of elimination to find what's essential</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>Three Main Schools</h3>
+              <ul class="concept-list">
+                <li><strong>Advaita (Non-dual):</strong> Ultimate identity of Ātman and Brahman; individual self is Absolute reality</li>
+                <li><strong>Viśiṣṭādvaita (Qualified non-dual):</strong> Unity with distinction; soul and Absolute are one yet different</li>
+                <li><strong>Dvaita (Dual):</strong> Eternal distinction between individual soul and Supreme Being</li>
+              </ul>
+            </div>
+            
+            <div class="content-section">
+              <h3>AI Applications</h3>
+              <ul class="concept-list">
+                <li><strong>Identity & Digital Selves:</strong> Navigate avatars and data-selves vs. witnessing awareness</li>
+                <li><strong>Māyā Recognition:</strong> Identify illusions in metrics, deepfakes, algorithmic reality bubbles</li>
+                <li><strong>Universal Ethics:</strong> Design systems that consider wellbeing of all conscious beings</li>
+                <li><strong>Uncertainty Design:</strong> Surface the limits of knowledge; normalize "I don't know" responses</li>
+                <li><strong>Meaning Systems:</strong> Help users connect with deeper purpose beyond immediate utility</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="workflow-panel">
+            <h3>Vedāntic Reality Check Protocol</h3>
+            <div class="workflow-steps">
+              <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <div class="step-title">Neti Neti Analysis</div>
+                  Question fundamental assumptions: "What if this metric/goal/feature isn't essential?"
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <div class="step-title">Māyā Audit</div>
+                  Identify where systems create false certainty or misleading representations
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <div class="step-title">Universal Consideration</div>
+                  Expand the circle of concern: How does this affect all stakeholders?
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <div class="step-title">Witness Preservation</div>
+                  Ensure human agency and choice remain central, not subsumed by algorithmic convenience
+                </div>
+              </div>
+              <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <div class="step-title">Meaning Integration</div>
+                  Connect utilitarian functions to deeper human values and aspirations
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="quiz-container">
+            <div class="quiz-question">Which Vedantic concept is most relevant for designing AI systems that help users distinguish between genuine insights and algorithmic bias?</div>
+            <div class="quiz-options">
+              <div class="quiz-option" data-correct="true">Māyā (cosmic illusion)</div>
+              <div class="quiz-option" data-correct="false">Mokṣa (liberation)</div>
+              <div class="quiz-option" data-correct="false">Ātman (individual self)</div>
+              <div class="quiz-option" data-correct="false">Brahman (ultimate reality)</div>
+            </div>
+          </div>
+          
+          <div class="notes-panel">
+            <h3>Your Notes on Vedānta</h3>
+            <textarea class="notes-textarea" data-school="vedanta" placeholder="Your reflections on identity, reality, illusion, and universal compassion in the age of AI..."></textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <script>
+    'use strict';
+    
+    // Application State
+    const AppState = {
+      notes: {},
+      theme: localStorage.getItem('hindu-schools-theme') || 'dark'
+    };
+
+    // Initialize Application
+    function initializeApp() {
+      loadNotes();
+      setupTheme();
+      setupEventListeners();
+    }
+
+    // Theme Management
+    function setupTheme() {
+      document.documentElement.setAttribute('data-theme', AppState.theme);
+    }
+
+    function toggleTheme() {
+      AppState.theme = AppState.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', AppState.theme);
+      localStorage.setItem('hindu-schools-theme', AppState.theme);
+    }
+
+    // Notes Management
+    function loadNotes() {
+      try {
+        const saved = localStorage.getItem('hindu-schools-notes');
+        if (saved) {
+          AppState.notes = JSON.parse(saved);
+          
+          // Load notes into textareas
+          Object.keys(AppState.notes).forEach(function(school) {
+            const textarea = document.querySelector('[data-school="' + school + '"]');
+            if (textarea) textarea.value = AppState.notes[school];
+          });
+        }
+      } catch (error) {
+        console.warn('Could not load notes:', error);
+      }
+    }
+
+    function saveNotes() {
+      try {
+        localStorage.setItem('hindu-schools-notes', JSON.stringify(AppState.notes));
+      } catch (error) {
+        console.warn('Could not save notes:', error);
+      }
+    }
+
+    // Event Listeners
+    function setupEventListeners() {
+      // Theme toggle
+      const themeBtn = document.getElementById('themeToggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', toggleTheme);
+      }
+
+      // Export notes
+      const exportBtn = document.getElementById('exportNotes');
+      if (exportBtn) {
+        exportBtn.addEventListener('click', exportNotes);
+      }
+
+      // Expand/Collapse All
+      const expandBtn = document.getElementById('expandAll');
+      const collapseBtn = document.getElementById('collapseAll');
+      
+      if (expandBtn) {
+        expandBtn.addEventListener('click', function() {
+          document.querySelectorAll('.school-content').forEach(function(content) {
+            content.classList.add('expanded');
+            const toggle = content.parentElement.querySelector('.school-toggle');
+            const icon = toggle.querySelector('.toggle-icon');
+            if (icon) icon.textContent = '▲';
+          });
+        });
+      }
+      
+      if (collapseBtn) {
+        collapseBtn.addEventListener('click', function() {
+          document.querySelectorAll('.school-content').forEach(function(content) {
+            content.classList.remove('expanded');
+            const toggle = content.parentElement.querySelector('.school-toggle');
+            const icon = toggle.querySelector('.toggle-icon');
+            if (icon) icon.textContent = '▼';
+          });
+        });
+      }
+
+      // School toggles
+      document.addEventListener('click', function(e) {
+        if (e.target.matches('.school-toggle') || e.target.closest('.school-toggle')) {
+          const toggle = e.target.matches('.school-toggle') ? e.target : e.target.closest('.school-toggle');
+          const schoolId = toggle.getAttribute('data-school');
+          const content = document.querySelector('[data-content="' + schoolId + '"]');
+          const icon = toggle.querySelector('.toggle-icon');
+          
+          if (content && icon) {
+            if (content.classList.contains('expanded')) {
+              content.classList.remove('expanded');
+              icon.textContent = '▼';
+            } else {
+              content.classList.add('expanded');
+              icon.textContent = '▲';
+            }
+          }
+        }
+      });
+
+      // Quiz interactions
+      document.addEventListener('click', function(e) {
+        if (e.target.matches('.quiz-option')) {
+          const option = e.target;
+          const container = option.closest('.quiz-container');
+          if (!container) return;
+          
+          const options = container.querySelectorAll('.quiz-option');
+          const correct = option.getAttribute('data-correct') === 'true';
+          
+          // Clear previous states
+          options.forEach(function(opt) {
+            opt.classList.remove('correct', 'incorrect');
+          });
+          
+          // Show results
+          if (correct) {
+            option.classList.add('correct');
+          } else {
+            option.classList.add('incorrect');
+            // Also highlight the correct answer
+            const correctOption = container.querySelector('[data-correct="true"]');
+            if (correctOption) correctOption.classList.add('correct');
+          }
+        }
+      });
+
+      // Notes auto-save
+      document.addEventListener('input', function(e) {
+        if (e.target.matches('.notes-textarea')) {
+          const school = e.target.getAttribute('data-school');
+          if (school) {
+            AppState.notes[school] = e.target.value;
+            saveNotes();
+          }
+        }
+      });
+    }
+
+    // Export functionality
+    function exportNotes() {
+      const notes = Object.keys(AppState.notes)
+        .filter(function(school) {
+          return AppState.notes[school].trim();
+        })
+        .map(function(school) {
+          return '## ' + school.charAt(0).toUpperCase() + school.slice(1) + '\n\n' + AppState.notes[school] + '\n\n';
+        });
+
+      const content = '# Six Hindu Schools × AI - My Learning Notes\n\nExported: ' + new Date().toISOString() + '\n\n' + notes.join('');
+      
+      const blob = new Blob([content], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'hindu-schools-ai-notes.md';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+      initializeApp();
+    }
+  </script>
+</body>
+</html>
