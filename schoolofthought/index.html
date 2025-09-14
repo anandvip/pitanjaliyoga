@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Six Hindu Schools × AI — A Seeker’s Guide (v1.0)</title>
+  <meta name="description" content="A practical, enduring reference that maps the six āstika schools of Hindu philosophy to the challenges of an AI‑driven society, with prompts, checklists, comparisons, and note‑taking."/>
+  <style>
+    :root{
+      --bg: #0b0d10;
+      --fg: #e6edf3;
+      --muted:#9fb0c0;
+      --card:#11161c;
+      --accent:#6aa6ff;
+      --accent-2:#7ee787;
+      --danger:#ff7b72;
+      --border:#1f2937;
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    [data-theme="light"]{
+      --bg:#f8fafc; --fg:#0b1220; --muted:#4b5563; --card:#ffffff; --accent:#1d4ed8; --accent-2:#0d9488; --danger:#b91c1c; --border:#e5e7eb; --shadow: 0 8px 24px rgba(15,23,42,.08);
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;}
+    .wrap{max-width:1200px;margin:auto;padding:24px}
+    header{position:sticky;top:0;background:linear-gradient(to bottom, var(--bg) 70%, transparent);backdrop-filter: blur(6px);z-index:10;padding:16px 0 8px}
+    .title{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    .title h1{font-weight:800;font-size:clamp(1.2rem, 2vw + 1rem, 2.1rem);margin:0}
+    .badge{font-size:.8rem;padding:3px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+    nav.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    button, .btn{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-weight:600;cursor:pointer;box-shadow:var(--shadow)}
+    button:hover{border-color:var(--accent)}
+    .grid{display:grid;gap:16px}
+    @media (min-width: 900px){
+      .grid.cols-2{grid-template-columns:1fr 1fr}
+      .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .card h2{margin:.2rem 0 0;font-size:1.35rem}
+    .card h3{margin:1.2rem 0 .4rem;font-size:1.05rem;color:var(--accent)}
+    .muted{color:var(--muted)}
+    .toc{border-left:3px solid var(--accent);padding-left:12px}
+    .toc a{display:block;color:var(--fg);text-decoration:none;padding:4px 0}
+    .toc a:hover{color:var(--accent)}
+    details{border:1px dashed var(--border);border-radius:12px;padding:10px 12px;margin:.6rem 0;background:linear-gradient(to bottom right, transparent, color-mix(in oklab, var(--card), var(--bg) 20%))}
+    details summary{cursor:pointer;font-weight:700}
+    kbd{border:1px solid var(--border);border-bottom-width:3px;border-radius:6px;padding:0 6px;background:var(--bg);}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--border);border-radius:999px;background:var(--bg);color:var(--muted);font-size:.86rem}
+    .pill .dot{width:8px;height:8px;border-radius:50%}
+    .nyaya{--c:#60a5fa}.vaiseshika{--c:#34d399}.sankhya{--c:#f59e0b}.yoga{--c:#a78bfa}.mimamsa{--c:#f43f5e}.vedanta{--c:#22d3ee}
+    .school{border-left:4px solid var(--c)}
+    .school .pill .dot{background:var(--c)}
+    .compare{display:grid;gap:12px}
+    .compare .row{display:grid;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px}
+    .compare .row strong{color:var(--accent)}
+    @media(min-width: 900px){.compare{grid-template-columns: 220px 1fr 1fr 1fr}.compare .row{grid-template-columns: subgrid;grid-column: 1 / -1}}
+    .note{width:100%;min-height:110px;border:1px solid var(--border);border-radius:12px;padding:10px;background:var(--bg);color:var(--fg)}
+    footer{margin:40px 0 20px;color:var(--muted);font-size:.9rem}
+    .kbd-row{display:flex;gap:8px;flex-wrap:wrap}
+    .search{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:12px;background:var(--bg);color:var(--fg)}
+    .hint{font-size:.9rem;color:var(--muted)}
+    .tag{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;padding:4px 8px;border:1px solid var(--border);border-radius:9px;margin-right:6px}
+    .hr{height:1px;background:var(--border);margin:20px 0}
+    .small{font-size:.92rem}
+    .right{margin-left:auto}
+    .rowbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    a.anchor{color:var(--muted);text-decoration:none;margin-left:6px}
+    a.anchor:hover{color:var(--accent)}
+    .keylist{display:flex;flex-wrap:wrap;gap:8px}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="title">
+      <h1>Six Hindu Schools × AI — A Seeker’s Guide</h1>
+      <span class="badge">v1.0 • living document</span>
+      <span class="badge">Last updated: 2025‑09‑14</span>
+    </div>
+    <nav class="tools">
+      <button id="themeToggle" title="Toggle light/dark">Toggle theme</button>
+      <button id="expandAll">Expand all</button>
+      <button id="collapseAll">Collapse all</button>
+      <button id="exportNotes">Export my notes</button>
+      <input id="search" class="search" type="search" placeholder="Search across schools, concepts, and prompts… (e.g., pramāṇa, gunas, bias, ontology)"/>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <section class="card toc" aria-label="Table of contents">
+      <div class="rowbar">
+        <h2 style="margin:0">Navigate</h2>
+        <span class="right hint">Tip: Click the hash to copy a deep link.</span>
+      </div>
+      <div class="grid cols-2 small">
+        <div>
+          <a href="#nyaya">1. Nyāya — Logic & Epistemology</a>
+          <a href="#vaiseshika">2. Vaiśeṣika — Ontology & Categories</a>
+          <a href="#sankhya">3. Sāṅkhya — Purusha/Prakriti & Gunas</a>
+        </div>
+        <div>
+          <a href="#yoga">4. Yoga — Practice & Liberation</a>
+          <a href="#mimamsa">5. Pūrva Mīmāṃsā — Duty & Hermeneutics</a>
+          <a href="#vedanta">6. Vedānta — Brahman/Ātman & Meaning</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How to use this guide</h2>
+      <p>This page is a <strong>reusable reference</strong> to avoid repeating the same groundwork. Each school includes: a concise overview, core ideas and texts, a mapping to <em>AI‑age challenges</em>, "what this school would ask," concrete checklists, and <em>prompts for inquiry</em>. Use the search box, save notes that persist locally, and export them when needed.</p>
+      <div class="kbd-row">
+        <span class="pill"><span class="dot"></span> <strong>Deep links</strong> — click the <kbd>#</kbd> beside any heading</span>
+        <span class="pill"><span class="dot"></span> <strong>Local notes</strong> — saved only in your browser</span>
+        <span class="pill"><span class="dot"></span> <strong>Zero dependencies</strong> — offline‑friendly</span>
+      </div>
+    </section>
+
+    <!-- 1. NYAYA -->
+    <section id="nyaya" class="card school nyaya" data-school="nyaya">
+      <div class="rowbar">
+        <h2>1) Nyāya — Logic & Epistemology</h2>
+        <a class="anchor" href="#nyaya" aria-label="Deep link">#</a>
+      </div>
+      <p class="muted">Key text: <em>Nyāya Sūtra</em> (Gautama). Core: valid knowledge (pramāṇa), debate, and fallacies.</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>Essence</h3>
+          <ul>
+            <li><strong>Pramāṇas</strong>: perception (<em>pratyakṣa</em>), inference (<em>anumāna</em>), comparison (<em>upamāna</em>), testimony (<em>śabda</em>).</li>
+            <li><strong>Logical method</strong>: careful definitions, valid inference, exposure of fallacies (<em>hetvābhāsa</em>).</li>
+            <li><strong>Telos</strong>: reliable cognition to remove suffering through right knowledge.</li>
+          </ul>
+          <details>
+            <summary>Typical fallacies to watch for (modernized)</summary>
+            <ul class="small">
+              <li><em>Asiddha</em> (unproven ground): model claim without verified data lineage.</li>
+              <li><em>Savyabhicāra</em> (inconstant): correlation presented as causal across changing contexts.</li>
+              <li><em>Viruddha</em> (contradictory): conclusion clashes with known constraints/specs.</li>
+              <li><em>Satpratipakṣa</em> (counterbalanced): strong opposing evidence ignored/omitted.</li>
+              <li><em>Bādhita</em> (defeated): observation overturns theory, yet claim persists.</li>
+            </ul>
+          </details>
+        </div>
+        <div>
+          <h3>AI‑Age Relevance</h3>
+          <ul>
+            <li><strong>Model claims as arguments</strong>: treat outputs as <em>propositions</em> requiring pramāṇa‑level support.</li>
+            <li><strong>Explainability</strong>: trace from conclusion → evidence → data lineage → authority (<em>śabda</em>).</li>
+            <li><strong>Debiasing</strong>: catalogue and test for <em>hetvābhāsas</em> in training narratives and prompts.</li>
+            <li><strong>Governance</strong>: adopt a public <em>Nyāya docket</em> for major AI deployments.</li>
+          </ul>
+        </div>
+      </div>
+      <h3>What Nyāya would ask now</h3>
+      <ul class="small">
+        <li>Which pramāṇa grounds this model’s recommendation in this context?</li>
+        <li>Is there contradictory observation in the wild that <em>bādhita</em> this claim?</li>
+        <li>Have we provided <em>śabda</em> (qualified testimony) with audit‑ready citations?</li>
+      </ul>
+      <h3>Checklist</h3>
+      <ul class="small">
+        <li>Document pramāṇa per feature: P (sensing), A (inference), U (analogy), Ś (authority).</li>
+        <li>Maintain a fallacy register observed during evals.</li>
+        <li>Require counter‑evidence searches before policy adoption.</li>
+      </ul>
+      <h3>Prompts for inquiry</h3>
+      <div class="keylist">
+        <span class="tag">“List the pramāṇa justifying X.”</span>
+        <span class="tag">“What evidence could <em>bādhita</em> this?”</span>
+        <span class="tag">“Show logical form of the claim.”</span>
+      </div>
+      <h3>Notes (local)</h3>
+      <textarea class="note" data-note="nyaya" placeholder="Your reflections, use‑cases, citations…"></textarea>
+    </section>
+
+    <!-- 2. VAISESHIKA -->
+    <section id="vaiseshika" class="card school vaiseshika" data-school="vaiseshika">
+      <div class="rowbar">
+        <h2>2) Vaiśeṣika — Ontology & Categories</h2>
+        <a class="anchor" href="#vaiseshika">#</a>
+      </div>
+      <p class="muted">Key text: <em>Vaiśeṣika Sūtra</em> (Kaṇāda). Core: categories (<em>padārtha</em>), atomism, realism.</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>Essence</h3>
+          <ul>
+            <li><strong>Padārthas</strong>: substance (<em>dravya</em>), quality (<em>guṇa</em>), action (<em>karman</em>), generality (<em>sāmānya</em>), particularity (<em>viśeṣa</em>), inherence (<em>samavāya</em>), non‑existence (<em>abhāva</em>).</li>
+            <li><strong>Focus</strong>: what exists and how parts bind to wholes.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>AI‑Age Relevance</h3>
+          <ul>
+            <li><strong>Knowledge graphs & schemas</strong>: use padārthas to design ontologies and types.</li>
+            <li><strong>Data contracts</strong>: <em>samavāya</em> for composition; <em>abhāva</em> for missingness/nulls.</li>
+            <li><strong>Safety</strong>: precise type constraints reduce category errors and hallucinations.</li>
+          </ul>
+        </div>
+      </div>
+      <details>
+        <summary>Padārtha → Data/AI design (quick mapping)</summary>
+        <ul class="small">
+          <li><em>Dravya</em>: entities/tables/objects; <em>Guṇa</em>: fields/attributes; <em>Karman</em>: events/transforms.</li>
+          <li><em>Sāmānya</em>: class/ontology; <em>Viśeṣa</em>: identifiers; <em>Samavāya</em>: composition/foreign keys.</li>
+          <li><em>Abhāva</em>: explicit null semantics; absence as first‑class fact.</li>
+        </ul>
+      </details>
+      <h3>What Vaiśeṣika would ask now</h3>
+      <ul class="small">
+        <li>What exactly are the entities and their essential qualities?</li>
+        <li>How do wholes inherit properties from parts without confusion?</li>
+        <li>Have we modeled absence and negation explicitly?</li>
+      </ul>
+      <h3>Checklist</h3>
+      <ul class="small">
+        <li>Define ontology before training; pin IDs (<em>viśeṣa</em>).</li>
+        <li>Write null/unknown policies (<em>abhāva</em>), not just defaults.</li>
+        <li>Document composition edges (<em>samavāya</em>) and invariants.</li>
+      </ul>
+      <h3>Prompts</h3>
+      <div class="keylist">
+        <span class="tag">“Schema as padārthas.”</span>
+        <span class="tag">“List invariants for composition.”</span>
+        <span class="tag">“Negation/absence rules.”</span>
+      </div>
+      <h3>Notes (local)</h3>
+      <textarea class="note" data-note="vaiseshika" placeholder="Your reflections, ontology sketches…"></textarea>
+    </section>
+
+    <!-- 3. SANKHYA -->
+    <section id="sankhya" class="card school sankhya" data-school="sankhya">
+      <div class="rowbar">
+        <h2>3) Sāṅkhya — Purusha/Prakriti & the Guṇas</h2>
+        <a class="anchor" href="#sankhya">#</a>
+      </div>
+      <p class="muted">Key text: <em>Sāṅkhya Kārikā</em> (Īśvarakṛṣṇa). Core: 25 tattvas; dualism of witness (<em>puruṣa</em>) and nature (<em>prakṛti</em>); guṇas (sattva/rajas/tamas).</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>Essence</h3>
+          <ul>
+            <li><strong>Witness vs. mechanism</strong>: distinguish awareness from processes.</li>
+            <li><strong>Guṇas</strong>: clarity/harmony (sattva), activity/desire (rajas), inertia/dullness (tamas).</li>
+            <li><strong>Goal</strong>: discernment (<em>viveka</em>) leading to non‑entanglement.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>AI‑Age Relevance</h3>
+          <ul>
+            <li><strong>Attention ecology</strong>: design for sattva (clarity), manage rajas (compulsion), reduce tamas (numb scroll).</li>
+            <li><strong>Human‑in‑the‑loop</strong>: keep the <em>witness</em> sovereign; avoid conflating users with metrics.</li>
+            <li><strong>Psychotech hygiene</strong>: interfaces that surface inner state (e.g., satiation/overload meters).</li>
+          </ul>
+        </div>
+      </div>
+      <details>
+        <summary>Micro‑practices (90‑second resets)</summary>
+        <ul class="small">
+          <li><strong>Sattva boost</strong>: 4‑7‑8 breaths; write 1 line intention; set 25‑min focus timer.</li>
+          <li><strong>Rajas channel</strong>: convert urge → task list; move body for 60s.</li>
+          <li><strong>Tamas lift</strong>: cold water splash; bright light; posture shift.</li>
+        </ul>
+      </details>
+      <h3>What Sāṅkhya would ask now</h3>
+      <ul class="small">
+        <li>Are we confusing algorithmic behavior with the nature of awareness?</li>
+        <li>Does the product entrain rajas/tamas? Where can we deliberately seed sattva?</li>
+        <li>What is the minimal entanglement to accomplish the user’s end?</li>
+      </ul>
+      <h3>Checklist</h3>
+      <ul class="small">
+        <li>Ship focus modes by default; visible end‑states to avoid endless loops.</li>
+        <li>Provide friction to impulsive actions; ease for deliberate ones.</li>
+        <li>Track overload indicators and suggest recovery.</li>
+      </ul>
+      <h3>Prompts</h3>
+      <div class="keylist">
+        <span class="tag">“Name the guna this flow amplifies.”</span>
+        <span class="tag">“Where is the witness forgotten?”</span>
+        <span class="tag">“Design for non‑entanglement.”</span>
+      </div>
+      <h3>Notes (local)</h3>
+      <textarea class="note" data-note="sankhya" placeholder="Your reflections, UX adjustments…"></textarea>
+    </section>
+
+    <!-- 4. YOGA -->
+    <section id="yoga" class="card school yoga" data-school="yoga">
+      <div class="rowbar">
+        <h2>4) Yoga — Practice & Liberation</h2>
+        <a class="anchor" href="#yoga">#</a>
+      </div>
+      <p class="muted">Key text: <em>Yoga Sūtra</em> (Patañjali). Core: eight limbs; kleshas; disciplined practice.</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>Essence</h3>
+          <ul>
+            <li><strong>Aṣṭāṅga</strong>: yama, niyama, āsana, prāṇāyāma, pratyāhāra, dhāraṇā, dhyāna, samādhi.</li>
+            <li><strong>Kleśas</strong>: ignorance, ego‑fixation, attachment, aversion, clinging to life.</li>
+            <li><strong>Method</strong>: repeatable protocols to pacify fluctuations of mind (<em>citta‑vṛtti‑nirodha</em>).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>AI‑Age Relevance</h3>
+          <ul>
+            <li><strong>Digital wellbeing</strong>: pratyāhāra = control inputs; set boundaries on notifications/feeds.</li>
+            <li><strong>Peak work</strong>: dhāraṇā→dhyāna = deep work blocks, monotask; post‑block recovery.</li>
+            <li><strong>Team hygiene</strong>: yama/niyama ethics for builders (truthful docs, non‑harm, austerity).</li>
+          </ul>
+        </div>
+      </div>
+      <details>
+        <summary>Protocol: 25‑minute Focus Sprint (Yoga‑inspired)</summary>
+        <ol class="small">
+          <li>2 min breath + intention (niyama).</li>
+          <li>25 min monotask (dhāraṇā→dhyāna).</li>
+          <li>3 min eyes‑closed rest (pratyāhāra).</li>
+          <li>Review: note one learning, one obstacle (svādhyāya).</li>
+        </ol>
+      </details>
+      <h3>What Yoga would ask now</h3>
+      <ul class="small">
+        <li>Does this tool reduce mental scattering or amplify it?</li>
+        <li>Where is non‑harm (<em>ahiṃsā</em>) violated—users, workers, environment?</li>
+        <li>What daily practice integrates the insight, not just reads about it?</li>
+      </ul>
+      <h3>Checklist</h3>
+      <ul class="small">
+        <li>Ship Do‑Not‑Disturb presets; 60–90 min deep work scenes.</li>
+        <li>Ethics rubric embedded into PR templates (yama/niyama prompts).</li>
+        <li>Recovery rituals post‑launch; retros with compassion and truthfulness.</li>
+      </ul>
+      <h3>Prompts</h3>
+      <div class="keylist">
+        <span class="tag">“Design a pratyāhāra mode for X.”</span>
+        <span class="tag">“Name the klesha at play.”</span>
+        <span class="tag">“From vṛtti → nirodha steps?”</span>
+      </div>
+      <h3>Notes (local)</h3>
+      <textarea class="note" data-note="yoga" placeholder="Your reflections, daily protocols…"></textarea>
+    </section>
+
+    <!-- 5. MIMAMSA -->
+    <section id="mimamsa" class="card school mimamsa" data-school="mimamsa">
+      <div class="rowbar">
+        <h2>5) Pūrva Mīmāṃsā — Duty, Ritual & Hermeneutics</h2>
+        <a class="anchor" href="#mimamsa">#</a>
+      </div>
+      <p class="muted">Key text: <em>Mīmāṃsā Sūtra</em> (Jaimini). Core: dharma from scriptural injunction; interpretive rules; <em>apurva</em> (unseen efficacy).</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>Essence</h3>
+          <ul>
+            <li><strong>Normativity</strong>: how we know what we ought to do.</li>
+            <li><strong>Exegesis</strong>: rules to resolve conflicts, context, general vs. specific, etc.</li>
+            <li><strong>Apurva</strong>: actions produce delayed, non‑obvious consequences.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>AI‑Age Relevance</h3>
+          <ul>
+            <li><strong>Policy & alignment</strong>: write unambiguous operational rules; resolve collisions.</li>
+            <li><strong>Second‑order effects</strong>: anticipate <em>apurva</em>—long‑tail harms, feedback loops.</li>
+            <li><strong>Reproducibility</strong>: ritualized runbooks for safety‑critical changes.</li>
+          </ul>
+        </div>
+      </div>
+      <details>
+        <summary>Six interpretive heuristics → policy design</summary>
+        <ul class="small">
+          <li><strong>Upakrama‑upasaṃhāra</strong> (beginning‑end): align purpose and outcomes.</li>
+          <li><strong>Abhyāsa</strong> (repetition): repeated emphasis → priority in policy.</li>
+          <li><strong>Apūrvatā</strong> (novelty): flag novel risks for special scrutiny.</li>
+          <li><strong>Phala</strong> (result): judge by consequences measured.</li>
+          <li><strong>Arthavāda</strong> (commendation): separate hype from injunction.</li>
+          <li><strong>Upapatti</strong> (reasoning): require rationale trace for each rule.</li>
+        </ul>
+      </details>
+      <h3>What Mīmāṃsā would ask now</h3>
+      <ul class="small">
+        <li>What exactly is enjoined, by whom, to whom, in which context?</li>
+        <li>Which rules override in conflict, and why?</li>
+        <li>What <em>apurva</em> might emerge months later?</li>
+      </ul>
+      <h3>Checklist</h3>
+      <ul class="small">
+        <li>Policy specs with precedence tables.</li>
+        <li>Change rituals: pre‑mortems, staged rollouts, canaries.</li>
+        <li>Measure lagging outcomes and feedback to rules.</li>
+      </ul>
+      <h3>Prompts</h3>
+      <div class="keylist">
+        <span class="tag">“Write the injunction unambiguously.”</span>
+        <span class="tag">“Resolve this rule collision.”</span>
+        <span class="tag">“List plausible apurva effects.”</span>
+      </div>
+      <h3>Notes (local)</h3>
+      <textarea class="note" data-note="mimamsa" placeholder="Your reflections, policy heuristics…"></textarea>
+    </section>
+
+    <!-- 6. VEDANTA -->
+    <section id="vedanta" class="card school vedanta" data-school="vedanta">
+      <div class="rowbar">
+        <h2>6) Vedānta — Brahman/Ātman & Ultimate Meaning</h2>
+        <a class="anchor" href="#vedanta">#</a>
+      </div>
+      <p class="muted">Key text: <em>Brahma Sūtra</em> (Bādarāyaṇa) + Upaniṣads + Gītā. Major views: Advaita (non‑dual), Viśiṣṭādvaita (qualified non‑dual), Dvaita (dual).</p>
+      <div class="grid cols-2">
+        <div>
+          <h3>Essence</h3>
+          <ul>
+            <li><strong>Self & Absolute</strong>: reality of Brahman; relation to self and world varies by school.</li>
+            <li><strong>Māyā & discernment</strong>: appearance vs. reality; inquiry (<em>neti neti</em>).</li>
+            <li><strong>Telos</strong>: liberation through knowledge/devotion/service (per sub‑school).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>AI‑Age Relevance</h3>
+          <ul>
+            <li><strong>Identity in the digital</strong>: avatars, data‑selves vs. witnessing awareness.</li>
+            <li><strong>Illusion management</strong>: deepfakes/metrics as <em>māyā</em>; train skepticism.</li>
+            <li><strong>Universal regard</strong>: non‑dual ethic → widen circle of concern.</li>
+          </ul>
+        </div>
+      </div>
+      <details>
+        <summary>Sub‑schools, one‑line relevance</summary>
+        <ul class="small">
+          <li><strong>Advaita</strong>: beware reifying narratives; practice de‑identification with dashboards.</li>
+          <li><strong>Viśiṣṭādvaita</strong>: relational self → design for devotion/service/embeddedness.</li>
+          <li><strong>Dvaita</strong>: clear distinction → accountability, moral agency preserved.</li>
+        </ul>
+      </details>
+      <h3>What Vedānta would ask now</h3>
+      <ul class="small">
+        <li>Who is the user beyond roles and analytics shadows?</li>
+        <li>What is real benefit vs. metric illusion?</li>
+        <li>How does this system cultivate compassion and clarity?</li>
+      </ul>
+      <h3>Checklist</h3>
+      <ul class="small">
+        <li>Surface uncertainty; avoid false precision.</li>
+        <li>Expose model limits; normalize “I don’t know.”</li>
+        <li>Add reflection prompts at key decision points.</li>
+      </ul>
+      <h3>Prompts</h3>
+      <div class="keylist">
+        <span class="tag">“What here is māyā vs. real?”</span>
+        <span class="tag">“Run a neti‑neti audit.”</span>
+        <span class="tag">“Design for universal regard.”</span>
+      </div>
+      <h3>Notes (local)</h3>
+      <textarea class="note" data-note="vedanta" placeholder="Your reflections, identity/ethics notes…"></textarea>
+    </section>
+
+    <!-- CROSS‑SCHOOL COMPARISON -->
+    <section id="compare" class="card">
+      <div class="rowbar">
+        <h2>Cross‑School Comparison</h2>
+        <a class="anchor" href="#compare">#</a>
+      </div>
+      <div class="compare">
+        <div class="row"><strong>Core Aim</strong><div>Reliable knowledge</div><div>Clear ontology</div><div>Discernment & non‑entanglement</div></div>
+        <div class="row"><strong>School</strong><div>Nyāya</div><div>Vaiśeṣika</div><div>Sāṅkhya</div></div>
+        <div class="row"><strong>AI Lens</strong><div>Evidence & explainability</div><div>Data modeling & types</div><div>Attention/UX hygiene</div></div>
+        <div class="hr"></div>
+        <div class="row"><strong>Core Aim</strong><div>Practice & mental steadiness</div><div>Norms & policy</div><div>Ultimate meaning & identity</div></div>
+        <div class="row"><strong>School</strong><div>Yoga</div><div>Mīmāṃsā</div><div>Vedānta</div></div>
+        <div class="row"><strong>AI Lens</strong><div>Focus protocols</div><div>Governance & second‑order effects</div><div>Māyā checks & compassion</div></div>
+      </div>
+    </section>
+
+    <!-- PRACTICAL KITS -->
+    <section id="kits" class="card">
+      <div class="rowbar">
+        <h2>Practical Kits</h2>
+        <a class="anchor" href="#kits">#</a>
+      </div>
+      <div class="grid cols-3">
+        <div class="card small">
+          <h3>Nyāya Docket</h3>
+          <ol>
+            <li>State the claim in standard logical form.</li>
+            <li>Attach pramāṇa trail (P/A/U/Ś) with links to evidence.</li>
+            <li>List counter‑evidence searched + results.</li>
+            <li>Record fallacies detected and mitigations.</li>
+          </ol>
+        </div>
+        <div class="card small">
+          <h3>Padārtha Schema Audit</h3>
+          <ol>
+            <li>Entity/attribute/event inventory.</li>
+            <li>Composition invariants and IDs.</li>
+            <li>Null/absence semantics written.</li>
+            <li>Type boundary tests (fuzz for category errors).</li>
+          </ol>
+        </div>
+        <div class="card small">
+          <h3>Guna‑Aware UX</h3>
+          <ol>
+            <li>Mark flows that stoke rajas/tamas.</li>
+            <li>Default to focus‑first layouts.</li>
+            <li>Offer deliberate pacing/stop‑rules.</li>
+            <li>Reflect state & suggest resets.</li>
+          </ol>
+        </div>
+        <div class="card small">
+          <h3>Yoga Focus Protocol</h3>
+          <ol>
+            <li>Monotask schedule + pratyāhāra guardrails.</li>
+            <li>Breathing + micro‑recovery between sprints.</li>
+            <li>Ethics rubric on PRs & product docs.</li>
+            <li>Team retrospective cadence.</li>
+          </ol>
+        </div>
+        <div class="card small">
+          <h3>Mīmāṃsā Policy Table</h3>
+          <ol>
+            <li>Rule inventory with precedence tiers.</li>
+            <li>Change‑rituals & sign‑offs.</li>
+            <li>Lagging indicators to monitor.</li>
+            <li>Apurva catalogue: hypothesize, test, adapt.</li>
+          </ol>
+        </div>
+        <div class="card small">
+          <h3>Vedānta Maya Checks</h3>
+          <ol>
+            <li>Illusion audit (deepfakes, vanity metrics).</li>
+            <li>Uncertainty surfacing + limits messaging.</li>
+            <li>Compassion prompts in decision flows.</li>
+            <li>Self/role separation reminders.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- READING -->
+    <section id="reading" class="card">
+      <div class="rowbar">
+        <h2>Canonical Sources & Study Tips</h2>
+        <a class="anchor" href="#reading">#</a>
+      </div>
+      <p class="small">For primary study, look for reliable translations/commentaries of: <em>Nyāya Sūtra</em>, <em>Vaiśeṣika Sūtra</em>, <em>Sāṅkhya Kārikā</em>, <em>Yoga Sūtra</em> with <em>Vyāsa Bhāṣya</em>, <em>Mīmāṃsā Sūtra</em>, and the <em>Upaniṣads</em>/<em>Bhagavad‑Gītā</em>/<em>Brahma Sūtra</em> for Vedānta. Pair with a modern secondary source that distinguishes traditions clearly.</p>
+      <ul class="small">
+        <li>Study one school per week; keep a Nyāya‑style docket of your learnings.</li>
+        <li>Practice something (Yoga) while you read; design something (Vaiśeṣika) while you model; question something (Vedānta) while you ship.</li>
+      </ul>
+    </section>
+
+    <!-- CHANGELOG -->
+    <section id="changelog" class="card">
+      <div class="rowbar">
+        <h2>Changelog</h2>
+        <a class="anchor" href="#changelog">#</a>
+      </div>
+      <ul class="small">
+        <li><strong>v1.0 • 2025‑09‑14</strong> — First public draft with six schools, kits, comparison, search, notes, export, deep links, theme toggle.</li>
+      </ul>
+    </section>
+
+    <footer class="wrap">
+      <p>Crafted as a reusable reference for seekers navigating AI‑age questions through classical Hindu <em>darśanas</em>. No external dependencies. Your notes stay in your browser.</p>
+    </footer>
+  </main>
+
+  <script>
+  (function(){
+    const qs = s=>document.querySelector(s);
+    const qsa = s=>Array.from(document.querySelectorAll(s));
+    const notes = qsa('textarea.note');
+
+    // Theme
+    const themeKey = 'sixschools.theme';
+    function setTheme(mode){ document.documentElement.setAttribute('data-theme', mode); localStorage.setItem(themeKey, mode); }
+    const savedTheme = localStorage.getItem(themeKey) || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    setTheme(savedTheme);
+    qs('#themeToggle').addEventListener('click',()=> setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
+
+    // Deep link copy
+    qsa('a.anchor').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const id = a.getAttribute('href');
+        const url = new URL(location.href);
+        url.hash = id;
+        navigator.clipboard.writeText(url.toString()).then(()=>{
+          a.textContent = '✓'; setTimeout(()=> a.textContent = '#', 900);
+          history.replaceState(null,'',id);
+        });
+      });
+    });
+
+    // Expand/Collapse all details
+    qs('#expandAll').addEventListener('click',()=> qsa('details').forEach(d=> d.open = true));
+    qs('#collapseAll').addEventListener('click',()=> qsa('details').forEach(d=> d.open = false));
+
+    // Persist notes per school
+    notes.forEach(t=>{
+      const key = 'sixschools.note.' + t.dataset.note;
+      t.value = localStorage.getItem(key) || '';
+      t.addEventListener('input',()=> localStorage.setItem(key, t.value));
+    });
+
+    // Export notes
+    qs('#exportNotes').addEventListener('click',()=>{
+      const data = {};
+      notes.forEach(t=> data[t.dataset.note] = t.value);
+      const blob = new Blob([ '# Six Hindu Schools × AI — Notes\n\n' + JSON.stringify(data, null, 2) ], {type:'text/plain'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'six-schools-notes.txt'; a.click(); URL.revokeObjectURL(a.href);
+    });
+
+    // Search filter
+    const search = qs('#search');
+    search.addEventListener('input',()=>{
+      const term = search.value.trim().toLowerCase();
+      qsa('section.school').forEach(sec=>{
+        const text = sec.innerText.toLowerCase();
+        sec.style.display = term && !text.includes(term) ? 'none' : '';
+      });
+    });
+
+    // Keyboard hints (optional future)
+    // TODO: Arrow nav, / focus search
+  })();
+  </script>
+</body>
+</html>
